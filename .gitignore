@@ -1,0 +1,2 @@
+# Apps Script backend contains ADMIN_PIN — never publish it
+*.gs

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2a27e8">
+  <title>NEXORA ’26 — Master’s Fresher Party | Bilaspur</title>
+  <meta name="description"
+    content="NEXORA ’26 — Master’s Fresher Party. 13 October 2026, 11:00 AM – 5:00 PM at Tamasha Balle Balle Restaurant, Bilaspur. Register for your pass.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <header class="site-header" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#home" class="brand" aria-label="NEXORA 2026 home"><span class="brand-title">NEXORA
+            <span>’26</span></span><span class="brand-sub">Master’s Fresher Party</span></a>
+        <nav class="nav-desktop" aria-label="Main">
+          <div class="nav-links"><a href="#home" class="nav-item active">Home</a><a href="#about"
+              class="nav-item">About</a><a href="#pricing" class="nav-item">Passes</a><a href="#event"
+              class="nav-item">Event flow</a><a href="#gallery" class="nav-item">Gallery</a><a href="#team"
+              class="nav-item">Team</a></div>
+          <a class="btn btn-gold btn-sm" href="https://forms.gle/CepYsBLXzJxgtbiXA" target="_blank" rel="noopener">Get
+            your pass</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle"
+          aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#home" class="nav-item">Home <span>→</span></a><a href="#about" class="nav-item">About <span>→</span></a><a
+      href="#pricing" class="nav-item">Passes <span>→</span></a><a href="#event" class="nav-item">Event flow
+      <span>→</span></a><a href="#gallery" class="nav-item">Gallery <span>→</span></a><a href="#team"
+      class="nav-item">Team <span>→</span></a>
+    <a href="admin/">Admin portal <span>→</span></a>
+    <a href="scanner/">Gate scanner <span>→</span></a>
+    <a class="btn btn-gold" href="https://forms.gle/CepYsBLXzJxgtbiXA" target="_blank" rel="noopener">Get your pass</a>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="chip" id="regChip"><i></i><span id="regTxt">Registration</span></span>
+            <h1 class="hero-title display">NEXORA<br><em>’26</em></h1>
+            <p class="hero-tagline">The Master’s fresher party. New faces, new department friends, one big welcome on 13
+              October.</p>
+            <div class="hero-meta">
+              <div class="meta-card"><small>Date</small><strong>Tue, 13 October 2026</strong></div>
+              <div class="meta-card"><small>Time</small><strong>11:00 AM – 5:00 PM</strong></div>
+              <div class="meta-card"><small>Venue</small><strong>Tamasha Balle Balle, Bilaspur</strong></div>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-gold" id="regBtn" href="https://forms.gle/CepYsBLXzJxgtbiXA" target="_blank"
+                rel="noopener">Register now</a>
+              <a class="btn btn-out" href="#event">See the schedule</a>
+            </div>
+            <div class="countdown-wrapper">
+              <div class="count-label">Starts in</div>
+              <div class="count-boxes" id="count">
+                <div class="count-box"><b id="cd">–</b><span>Days</span></div>
+                <div class="count-box"><b id="ch">–</b><span>Hours</span></div>
+                <div class="count-box"><b id="cm">–</b><span>Mins</span></div>
+                <div class="count-box"><b id="cs">–</b><span>Secs</span></div>
+              </div>
+            </div>
+          </div>
+          <button class="ticket" id="heroPosterCard" aria-label="Preview the event poster">
+            <div class="ticket-top"><span>Admit one</span><span>Limited passes</span></div>
+            <h3 class="display">NEXORA ’26</h3>
+            <p>Master’s Fresher Party · Lunch, DJ, games and the Mr. &amp; Ms. Fresher crown.</p>
+            <div class="ticket-perf"></div>
+            <div class="ticket-foot"><span>13 Oct · 11:00 AM</span><span>View poster</span></div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title display">More than a fresher party</h2>
+          <p class="section-copy">NEXORA ’26 welcomes the new Master’s batch and brings five departments together for
+            one day.</p>
+          <div class="dept-pills">
+            <div class="dept-pill">Chemistry</div>
+            <div class="dept-pill">Zoology</div>
+            <div class="dept-pill">Computer Science</div>
+            <div class="dept-pill">Biotechnology</div>
+            <div class="dept-pill">PGDCA</div>
+          </div>
+        </div>
+        <div class="highlights-grid reveal">
+          <div class="highlight-card">
+            <div class="highlight-icon">🤝</div>
+            <h4>New connections</h4>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">🎵</div>
+            <h4>Live DJ & music</h4>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">🎯</div>
+            <h4>Games & surprises</h4>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">🍽️</div>
+            <h4>Buffet lunch</h4>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">📸</div>
+            <h4>HD photography</h4>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">✨</div>
+            <h4>Digital entry pass</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" style="padding-top:0">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title display">Pick your pass</h2>
+          <p class="section-copy">Both passes include entry, lunch buffet, snacks and every activity on the day.</p>
+        </div>
+        <div class="pricing-wrap reveal">
+          <div class="price-card">
+            <h3>Junior pass</h3>
+            <div class="price-amount"><small>₹</small>899</div>
+            <p class="price-desc">Entry, lunch buffet, snacks, music and all party activities.</p>
+            <a class="btn btn-out" href="https://forms.gle/CepYsBLXzJxgtbiXA" target="_blank" rel="noopener">Choose
+              Junior</a>
+          </div>
+          <div class="price-card featured">
+            <h3>Senior pass</h3>
+            <div class="price-amount"><small>₹</small>999</div>
+            <p class="price-desc">Entry, lunch buffet, snacks, DJ party and all event activities.</p>
+            <a class="btn btn-gold" href="https://forms.gle/CepYsBLXzJxgtbiXA" target="_blank" rel="noopener">Choose
+              Senior</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="event" class="on-dark">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title display">Your day, hour by hour</h2>
+          <p class="section-copy">Six hours, eleven programmes, from gate check-in to the group photo.</p>
+          <div class="event-meta-chips"><span class="meta-chip">11:00 AM – 5:00 PM</span><span class="meta-chip">Tamasha
+              Balle Balle</span><span class="meta-chip">11 programmes</span></div>
+        </div>
+        <div class="timeline-grid">
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">11:00 – 11:30 AM</span><span
+                class="timeline-num">01</span></div>
+            <div>
+              <h3>🎟️ Welcome & Registration</h3>
+              <p>Gate entry, digital pass/QR verification and batch welcome.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">11:30 – 11:45 AM</span><span
+                class="timeline-num">02</span></div>
+            <div>
+              <h3>🎤 Welcome & Introduction</h3>
+              <p>Faculty and student introductions, opening address, stage kickoff.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">11:45 AM – 12:15 PM</span><span
+                class="timeline-num">03</span></div>
+            <div>
+              <h3>🎂 Cake Cutting</h3>
+              <p>Ceremonial cake cutting to mark the Master's batch beginning.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">12:15 – 1:00 PM</span><span
+                class="timeline-num">04</span></div>
+            <div>
+              <h3>👑 Fresher Introduction Round</h3>
+              <p>Icebreakers, personality spotlight and batch introductions.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">1:00 – 2:00 PM</span><span
+                class="timeline-num">05</span></div>
+            <div>
+              <div class="timeline-featured-pill">Lunch break</div>
+              <h3>🍽️ Lunch & Networking</h3>
+              <p>Buffet lunch, mocktails and time to meet other departments.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">2:00 – 2:45 PM</span><span
+                class="timeline-num">06</span></div>
+            <div>
+              <h3>🎭 Fun Games & Activities</h3>
+              <p>Batch challenges, group games and surprises.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">2:45 – 3:30 PM</span><span
+                class="timeline-num">07</span></div>
+            <div>
+              <div class="timeline-featured-pill">Live stage</div>
+              <h3>💃 Dance, Music & Talent</h3>
+              <p>Live DJ, solo and group dances, vocals and performances.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">3:30 – 4:15 PM</span><span
+                class="timeline-num">08</span></div>
+            <div>
+              <h3>🏆 Fresher Challenges & Titles</h3>
+              <p>Stage showdowns, creative tasks and special title rounds.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal crown-card">
+            <div class="timeline-top"><span class="timeline-time">4:15 – 4:40 PM</span><span
+                class="timeline-num">09</span></div>
+            <div>
+              <div class="timeline-featured-pill">Crowning round</div>
+              <h3>👑 Mr. & Ms. Fresher — Final Round</h3>
+              <p>Runway showcase, jury Q&A and the crowning of NEXORA ’26.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">4:40 – 4:50 PM</span><span
+                class="timeline-num">10</span></div>
+            <div>
+              <h3>🏅 Titles, Awards & Prizes</h3>
+              <p>Sashes, trophies, titles and prize handouts.</p>
+            </div>
+          </div>
+          <div class="timeline-card reveal">
+            <div class="timeline-top"><span class="timeline-time">4:50 – 5:00 PM</span><span
+                class="timeline-num">11</span></div>
+            <div>
+              <h3>📸 Group Photos & Closing</h3>
+              <p>Batch photoshoot, confetti and farewell.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title display">What the day looks like</h2>
+          <p class="section-copy">Tap any photo to open it full size.</p>
+        </div>
+        <div class="gallery-wrap reveal">
+          <div class="gallery-item" tabindex="0" role="button" aria-label="View photo: Party lights & atmosphere" data-caption="Party lights & atmosphere"><img src="assets/party-bg.jpg"
+              alt="Party lights & atmosphere" loading="lazy">
+            <div class="gallery-overlay">Party lights & atmosphere</div>
+          </div>
+          <div class="gallery-item" tabindex="0" role="button" aria-label="View photo: DJ beats & live music" data-caption="DJ beats & live music"><img src="assets/gallery-dj.jpg"
+              alt="DJ beats & live music" loading="lazy">
+            <div class="gallery-overlay">DJ beats & live music</div>
+          </div>
+          <div class="gallery-item" tabindex="0" role="button" aria-label="View photo: Celebration & sparklers" data-caption="Celebration & sparklers"><img src="assets/gallery-celebration.jpg"
+              alt="Celebration & sparklers" loading="lazy">
+            <div class="gallery-overlay">Celebration & sparklers</div>
+          </div>
+          <div class="gallery-item" tabindex="0" role="button" aria-label="View photo: Dance floor energy" data-caption="Dance floor energy"><img src="assets/gallery-dance.jpg"
+              alt="Dance floor energy" loading="lazy">
+            <div class="gallery-overlay">Dance floor energy</div>
+          </div>
+          <div class="gallery-item" tabindex="0" role="button" aria-label="View photo: Night atmosphere" data-caption="Night atmosphere"><img src="assets/party-bg.jpg"
+              alt="Night atmosphere" loading="lazy">
+            <div class="gallery-overlay">Night atmosphere</div>
+          </div>
+          <div class="gallery-item" tabindex="0" role="button" aria-label="View photo: Toast & cheers" data-caption="Toast & cheers"><img src="assets/gallery-celebration.jpg"
+              alt="Toast & cheers" loading="lazy">
+            <div class="gallery-overlay">Toast & cheers</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title display">Meet the organizers</h2>
+          <p class="section-copy">Master’s students from three departments, running the show.</p>
+        </div>
+        <div id="teamRoot"></div>
+      </div>
+    </section>
+
+    <section id="staff">
+      <div class="container">
+        <div class="utility-grid reveal">
+          <div class="utility-card">
+            <div class="util-info">
+              <div class="util-icon">🛠️</div>
+              <div>
+                <h4>Admin control room</h4>
+                <p>Verify payments, issue passes, send broadcasts.</p>
+              </div>
+            </div><a class="btn btn-out btn-sm" href="admin/">Sign in</a>
+          </div>
+          <div class="utility-card">
+            <div class="util-info">
+              <div class="util-icon">📷</div>
+              <div>
+                <h4>Gate scanner</h4>
+                <p>Scan QR passes and watch live check-ins.</p>
+              </div>
+            </div><a class="btn btn-out btn-sm" href="scanner/">Open scanner</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4 class="display">NEXORA ’26</h4><span class="sub">Master’s Fresher Party</span>
+          <p><strong>Tue, 13 October 2026</strong><br>11:00 AM – 5:00 PM<br>Tamasha Balle Balle Restaurant, Bilaspur</p>
+        </div>
+        <div class="footer-col">
+          <h5>Navigate</h5>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#pricing">Passes</a></li>
+            <li><a href="#event">Event flow</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#team">Team</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Staff</h5>
+          <ul class="footer-links">
+            <li><a href="admin/">Admin portal</a></li>
+            <li><a href="scanner/">Gate scanner</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Help desk</h5>
+          <div class="help-box"><strong>Class:</strong> M.Sc. Chemistry 3rd Semester<br><strong>Location:</strong> Main
+            Building, Ground Floor, Room 00</div>
+          <div class="help-contacts"><a class="contact-btn" href="tel:+917987389762">
+              <div class="contact-info"><span class="contact-name">Sagar Lahre</span><span
+                  class="contact-dept">Chemistry</span></div><span class="contact-phone">Call</span>
+            </a><a class="contact-btn" href="tel:+918827341282">
+              <div class="contact-info"><span class="contact-name">Muskan Kshatriya</span><span
+                  class="contact-dept">Zoology</span></div><span class="contact-phone">Call</span>
+            </a><a class="contact-btn" href="tel:+918770189493">
+              <div class="contact-info"><span class="contact-name">Ajay Chandra</span><span
+                  class="contact-dept">Computer Science</span></div><span class="contact-phone">Call</span>
+            </a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 NEXORA ’26. All rights reserved.</div>
+        <div>Tamasha Balle Balle · Bilaspur</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-mobile-bar" id="stickyMobileBar">
+    <div class="sticky-mobile-info"><strong>NEXORA ’26</strong><span>13 Oct · 11:00 AM</span></div>
+    <a class="btn btn-gold btn-sm" href="https://forms.gle/CepYsBLXzJxgtbiXA" target="_blank" rel="noopener">Get your
+      pass</a>
+  </div>
+
+  <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image preview">
+    <div class="lightbox-card">
+      <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Close preview">×</button>
+      <div class="lightbox-img-box"><img id="lightboxImg" src="assets/party-bg.jpg" alt="Preview"></div>
+      <div class="lightbox-caption"><span id="lightboxText">NEXORA ’26</span>
+        <div style="display:flex;gap:10px"><a class="btn btn-gold btn-sm" id="lightboxDownloadBtn"
+            href="assets/party-bg.jpg" download="NEXORA-2026.jpg">Save</a>
+          <a class="btn btn-out btn-sm" href="https://forms.gle/CepYsBLXzJxgtbiXA" target="_blank"
+            rel="noopener">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

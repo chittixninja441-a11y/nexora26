@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050507">
+  <title>NEXORA 2026 — Admin Control Room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+
+<body>
+
+  <div class="ambient" aria-hidden="true">
+    <span class="orb o1"></span>
+    <span class="orb o2"></span>
+  </div>
+
+  <!-- Sign In Screen -->
+  <div id="login">
+    <div class="login-card">
+      <div class="logo">N</div>
+      <div class="eyebrow">Organiser Access</div>
+      <h1>NEXORA <span class="gtext">’26</span></h1>
+      <div class="mut">Admin control suite · enter your PIN to continue</div>
+      <input type="password" id="pinInput" placeholder="••••" autocomplete="off" inputmode="numeric" aria-label="Admin PIN">
+      <button class="btn-gold" id="loginBtn">Sign In</button>
+      <div id="loginMsg"></div>
+    </div>
+  </div>
+
+  <!-- Main Application -->
+  <div id="app">
+    <header class="topbar">
+      <div class="topin">
+        <div class="brand">
+          <div class="logo">N</div>
+          <div>
+            <span class="brand-title">NEXORA <span class="gold">’26</span><small>Admin</small></span>
+            <span class="mut" id="updated"><span class="dot" id="net"></span>—</span>
+          </div>
+        </div>
+        <div class="tools">
+          <button id="refreshBtn" title="Refresh Database">↻ Refresh</button>
+          <button id="exportBtn">⬇ Export ▾</button>
+          <span class="divider"></span>
+          <button id="bulkBtn" class="btn-gold" title="Send VIP Passes in Bulk">✉ Bulk Passes</button>
+          <button id="waBtn" class="btn-wa" title="Broadcast WhatsApp Group Invite Link">💬 WhatsApp Link</button>
+          <span class="divider"></span>
+          <button id="logoutBtn" class="btn-danger">Sign Out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="hero">
+        <div>
+          <div class="eyebrow">Master’s Fresher · Control Room</div>
+          <h1 class="serif">Executive <span class="gtext">Dashboard</span></h1>
+          <div class="hero-meta">
+            <span class="meta-chip">📅 <b>13 Oct 2026</b></span>
+            <span class="meta-chip">⏰ <b>11:30 AM – 5:30 PM</b></span>
+            <span class="meta-chip">📍 <b>Tamasha Balle Balle, Bilaspur</b></span>
+          </div>
+        </div>
+        <nav class="seg" id="tabs" aria-label="Dashboard Sections">
+          <button data-tab="overview" class="on">Overview</button>
+          <button data-tab="people">Attendees<span class="n" id="nPeople">0</span></button>
+          <button data-tab="log">Entry Log</button>
+        </nav>
+      </div>
+
+      <!-- Tab 1: Overview -->
+      <section id="tab-overview">
+        <div class="kpis" id="kpis"></div>
+        <div class="grid">
+          <div class="panel wide">
+            <h3>Check-In Progress</h3>
+            <div class="ring-wrap">
+              <div class="ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="10" />
+                  <circle id="ringArc" cx="60" cy="60" r="52" fill="none" stroke="url(#g)" stroke-width="10"
+                    stroke-linecap="round" stroke-dasharray="0 326.7" />
+                  <defs>
+                    <linearGradient id="g">
+                      <stop offset="0" stop-color="#aa7c11" />
+                      <stop offset=".55" stop-color="#ffd700" />
+                      <stop offset="1" stop-color="#faefd2" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div><b id="ringPct">0%</b><span class="mut">checked in</span></div>
+              </div>
+              <div id="ringText" class="mut" style="line-height:1.9;font-size:13px"></div>
+            </div>
+          </div>
+
+          <div class="panel wide">
+            <h3>Needs Attention</h3>
+            <div id="attn"></div>
+          </div>
+
+          <div class="panel wide">
+            <h3>Department Breakdown</h3>
+            <div id="byDept"></div>
+          </div>
+
+          <div class="panel wide">
+            <h3>Gender Representation</h3>
+            <div id="byGender"></div>
+          </div>
+
+          <div class="panel wide">
+            <h3>Registration Category</h3>
+            <div id="byCat"></div>
+          </div>
+
+          <div class="panel wide">
+            <h3>Payment Method</h3>
+            <div id="byMethod"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 2: Attendees Directory -->
+      <section id="tab-people" style="display:none">
+        <div class="toolbar">
+          <div class="search">
+            <input id="q" placeholder="Search name, Reg ID, email, phone, transaction…  ( / )" aria-label="Search attendees">
+          </div>
+          <select id="fEntry" aria-label="Gate Entry Filter">
+            <option value="">Entry: all</option>
+            <option>Entered</option>
+            <option>Not Entered</option>
+          </select>
+          <select id="fGender" aria-label="Gender Filter"></select>
+          <select id="fDept" aria-label="Department Filter"></select>
+          <button id="addBtn" class="btn-gold">＋ Add Attendee</button>
+        </div>
+
+        <div class="chips" id="chips"></div>
+
+        <div class="selbar" id="selbar">
+          <b id="selCount">0 selected</b>
+          <button id="selZip" class="btn-gold">⬇ Passes (ZIP)</button>
+          <button id="selEmails">⬇ Emails (CSV)</button>
+          <button id="selClear" class="btn-ghost">Clear Selection</button>
+        </div>
+
+        <div class="mut" id="count" style="margin:0 4px 10px"></div>
+
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:34px"><input type="checkbox" id="selAll" aria-label="Select All"></th>
+                <th>Attendee</th>
+                <th>Dept / Category</th>
+                <th class="hide-m">Gender</th>
+                <th>Payment</th>
+                <th>Entry</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Tab 3: Entry Audit Log -->
+      <section id="tab-log" style="display:none">
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Code / ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody id="logRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Popover Menu -->
+  <div id="menu"></div>
+
+  <!-- Edit Attendee Modal -->
+  <div class="modal" id="modal">
+    <div class="mbox">
+      <div class="eyebrow">Attendee Record</div>
+      <h2 id="mTitle" style="margin-top:6px">Edit</h2>
+      <div class="fgrid" id="mBody"></div>
+      <label class="chk"><input type="checkbox" id="e_resend"> Resend registration confirmation after saving</label>
+      <div class="msec">
+        <div class="t">Instant Communications & Pass</div>
+        <div class="mrow">
+          <button data-send="reg">✉ Registration Email</button>
+          <button data-send="pass">🎟 VIP Pass Email</button>
+          <button data-send="entry">✅ Entry Confirmation</button>
+          <button id="dlPass" class="btn-gold">⬇ Download Pass</button>
+          <button id="linkPass">🔗 Copy Link</button>
+          <button id="shotBtn">🧾 Payment Proof</button>
+        </div>
+      </div>
+      <div class="mrow" style="margin-top:20px;justify-content:flex-end">
+        <button id="mCancel">Cancel</button>
+        <button class="btn-gold" id="mSave">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Attendee Modal -->
+  <div class="modal" id="addModal">
+    <div class="mbox">
+      <div class="eyebrow">Direct Registration</div>
+      <h2 style="margin-top:6px">Add Walk-in Attendee</h2>
+      <div class="fgrid" id="aBody"></div>
+      <label class="chk"><input type="checkbox" id="a_paid"> Payment received — mark as <b>Paid</b> immediately</label>
+      <label class="chk"><input type="checkbox" id="a_send" checked> Dispatch confirmation / VIP entry pass to email</label>
+      <div class="mrow" style="margin-top:20px;justify-content:flex-end">
+        <button id="aCancel">Cancel</button>
+        <button class="btn-gold" id="aSave">Confirm & Add</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Bulk Pass Broadcast Modal -->
+  <div class="modal" id="bulkPassModal">
+    <div class="mbox">
+      <div class="eyebrow">VIP Pass Engine</div>
+      <h2 style="margin-top:6px">Send Entry Passes in Bulk</h2>
+      <p style="color:var(--mut);font-size:13px;line-height:1.5;margin-bottom:14px">
+        Automatically generates high-resolution QR tokens and emails personalized VIP digital entry passes to verified attendees.
+      </p>
+
+      <div style="margin-bottom:16px">
+        <div style="font-size:12.5px;color:#fff;margin-bottom:10px">
+          Paid attendees awaiting pass: <b style="color:var(--warn);font-size:16px" id="bpCount">0</b>
+        </div>
+        <div class="radio-list">
+          <label class="radio-card" for="bpOptPending">
+            <input type="radio" name="bpOpt" id="bpOptPending" checked>
+            <span class="rc-label">Deliver to all paid attendees who have not received a pass</span>
+          </label>
+          <label class="radio-card" for="bpOptSelected">
+            <input type="radio" name="bpOpt" id="bpOptSelected">
+            <span class="rc-label">Send to currently selected rows only</span>
+            <span class="rc-badge"><span id="bpSelected">0</span> selected</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="prog-wrap" id="bpProgWrap">
+        <div class="prog-stats">
+          <span id="bpProgStatus">Preparing batch…</span>
+        </div>
+        <div class="prog-track">
+          <div class="prog-bar" id="bpProgBar"></div>
+        </div>
+      </div>
+
+      <div class="mrow" style="margin-top:18px;justify-content:flex-end">
+        <button id="bpCancelBtn">Cancel</button>
+        <button class="btn-gold" id="bpStartBtn">Start Delivery ✉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Bulk WhatsApp Broadcast Modal -->
+  <div class="modal" id="bulkWaModal">
+    <div class="mbox">
+      <div class="eyebrow">Community Broadcast</div>
+      <h2 style="margin-top:6px">Send WhatsApp Group Invite</h2>
+      <p style="color:var(--mut);font-size:13px;line-height:1.5;margin-bottom:14px">
+        Send the official WhatsApp group invite link via email directly to paid attendees so they can join the community before event day.
+      </p>
+
+      <div style="margin-bottom:16px">
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--cream);margin-bottom:6px">
+          WhatsApp Group Invite Link
+        </label>
+        <input id="waLinkInput" type="url" placeholder="https://chat.whatsapp.com/..." style="font-size:13.5px">
+      </div>
+
+      <div class="radio-list" style="margin-bottom:16px">
+        <label class="radio-card" for="waOptPending">
+          <input type="radio" name="waOpt" id="waOptPending" checked>
+          <span class="rc-label">Send only to attendees who haven't received it yet</span>
+          <span class="rc-badge"><span id="waUnsentCount">0</span> pending</span>
+        </label>
+        <label class="radio-card" for="waOptAll">
+          <input type="radio" name="waOpt" id="waOptAll">
+          <span class="rc-label">Broadcast / Resend to ALL paid attendees</span>
+          <span class="rc-badge"><span id="waTotalCount">0</span> total</span>
+        </label>
+        <label class="radio-card" for="waOptSelected">
+          <input type="radio" name="waOpt" id="waOptSelected">
+          <span class="rc-label">Send to selected attendees only</span>
+          <span class="rc-badge"><span id="waSelCount">0</span> selected</span>
+        </label>
+      </div>
+
+      <div class="prog-wrap" id="waProgWrap">
+        <div class="prog-stats">
+          <span id="waProgStatus">Preparing batch…</span>
+        </div>
+        <div class="prog-track">
+          <div class="prog-bar" id="waProgBar"></div>
+        </div>
+      </div>
+
+      <div class="mrow" style="margin-top:18px;justify-content:flex-end">
+        <button id="waCancelBtn">Cancel</button>
+        <button class="btn-wa" id="waStartBtn">Broadcast WhatsApp Link 💬</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Proof Modal -->
+  <div class="modal" id="shotModal">
+    <div class="mbox">
+      <div class="eyebrow">Payment Verification</div>
+      <h2 id="shotTitle" style="margin-top:6px">Receipt Proof</h2>
+      <div class="mut" id="shotMeta" style="margin-bottom:12px"></div>
+      <div class="shotimg" id="shotImg"></div>
+      <div class="mrow" id="shotActs" style="margin-top:14px"></div>
+      <div class="mrow" style="margin-top:16px;justify-content:flex-end">
+        <button id="shotClose">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../assets/js/admin.js"></script>
+</body>
+
+</html>

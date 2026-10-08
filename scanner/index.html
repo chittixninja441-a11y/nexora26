@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#060608">
+  <title>NEXORA '26 — Gate Scanner Portal</title>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- ZXing Barcode Scanning Library -->
+  <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js"></script>
+  <script>
+    if (typeof ZXing === "undefined") {
+      document.write('<script src="https://unpkg.com/@zxing/library@0.21.3/umd/index.min.js"><\/script>');
+    }
+  </script>
+
+  <!-- Modular Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/scanner.css">
+</head>
+
+<body>
+
+  <!-- Gate PIN Security Lock -->
+  <div id="lock" class="lock">
+    <div class="card">
+      <div class="logo">N</div>
+      <div>
+        <div class="brand-badge">Security Access</div>
+        <h1 style="font-size:22px">NEXORA '26</h1>
+      </div>
+      <div class="hint" style="color:#94a3b8">Enter the gate PIN to initialize scanner module</div>
+      <input id="pinIn" type="password" inputmode="numeric" autocomplete="off" placeholder="••••">
+      <button class="btn-gold" id="unlockBtn">UNLOCK SCANNER</button>
+      <div class="err" id="lockErr"></div>
+    </div>
+  </div>
+
+  <!-- Main Scanner Layout -->
+  <main class="scanner-container">
+    <header>
+      <div class="brand-badge">Master Fresher Verification</div>
+      <h1>NEXORA '26</h1>
+      <div class="gate-sub">
+        <span id="net" class="status-beacon"></span>
+        <span id="gateName">GATE 1</span> • Entry Scanner
+        <button class="lockbtn" id="lockBtn" title="Lock gate console">🔒 Lock</button>
+      </div>
+    </header>
+
+    <!-- Camera Viewport & HUD -->
+    <section id="viewport" class="viewport">
+      <video id="videoPreview" playsinline muted autoplay></video>
+      <div class="target"></div>
+      <div class="laser"></div>
+
+      <div class="cam-tools">
+        <div id="btnTorch" class="round-btn" title="Toggle Flashlight">🔦</div>
+        <div id="btnFlip" class="round-btn" title="Switch Camera Sensor">🔄</div>
+      </div>
+
+      <div id="overlay" class="overlay">
+        <div class="ico" id="ovIco">📷</div>
+        <div class="t" id="ovTitle">Camera Standby</div>
+        <div class="d" id="ovText">Tap the button to enable live ticket scanning.</div>
+        <button class="btn-gold" id="ovBtn" style="padding:11px 24px">Enable Camera</button>
+      </div>
+    </section>
+
+    <!-- Scan Engine Controls -->
+    <div class="row2">
+      <button id="btnStart" class="btn-gold">START CAMERA</button>
+      <button id="btnStop" class="btn-dark" disabled>STOP</button>
+    </div>
+
+    <!-- Alert / System Notice -->
+    <div id="status" class="status"></div>
+
+    <!-- Gate Live Statistics -->
+    <section class="stats" aria-label="Gate Statistics">
+      <div class="stat"><b id="sPaid">—</b><span>Paid</span></div>
+      <div class="stat"><b id="sIn">—</b><span>Entered</span></div>
+      <div class="stat"><b id="sLeft">—</b><span>Remaining</span></div>
+    </section>
+
+    <div class="progress" title="Attendance Progress">
+      <i id="bar"></i>
+    </div>
+
+    <!-- Manual Code Fallback & Image Decode -->
+    <section class="manual">
+      <input id="manualInput" type="text" placeholder="Registration ID / QR Hash" autocomplete="off"
+        autocapitalize="characters">
+
+      <div class="row2">
+        <button class="btn-dark" id="btnCheck">CHECK</button>
+        <button class="btn-gold" id="btnAdmit">ADMIT</button>
+        <button class="btn-dark btn-undo" id="btnUndo">UNDO</button>
+      </div>
+
+      <button class="btn-dark btn-photo" id="btnPhoto">📸 Scan from Gallery / Photo</button>
+      <input id="photoIn" type="file" accept="image/*" capture="environment" hidden>
+    </section>
+
+    <p class="hint">
+      <strong>CHECK</strong>: Audit only • <strong>ADMIT</strong>: Check-in pass • <strong>UNDO</strong>: Reset
+      entry.<br>
+      High-speed verification active. Duplicates are instantly flagged.
+    </p>
+  </main>
+
+  <!-- Sliding Attendance Feedback Drawer -->
+  <div id="sheet" class="sheet" onclick="hideSheet()">
+    <div id="shBig" class="big">—</div>
+    <div id="shMsg" class="msg"></div>
+    <div id="shName" class="name">—</div>
+    <div id="shRid" class="rid">—</div>
+    <div class="kv"><span>Department</span><span id="shDept">—</span></div>
+    <div class="kv"><span>Category</span><span id="shCat">—</span></div>
+    <div class="kv"><span>Gender</span><span id="shGen">—</span></div>
+    <div class="kv"><span>Entry Time</span><span id="shTime">—</span></div>
+    <div class="tap">Tap to dismiss</div>
+  </div>
+
+  <!-- Modular Scanner Engine -->
+  <script src="../assets/js/scanner.js" defer></script>
+</body>
+
+</html>
